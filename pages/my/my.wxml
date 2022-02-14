@@ -1,0 +1,17 @@
+<!--pages/my/my.wxml-->
+<view wx:if="{{ canIUse }}" class="userBox">
+  <view class="userHeadImg">
+    <open-data type="userAvatarUrl" ></open-data>
+  </view>
+  <open-data type="userNickName"></open-data>
+</view>
+<view class="list_box">
+
+</view>
+<i-cell-group i-class="infoList">
+  <i-cell title="个人信息" url="/pages/info/info" is-link></i-cell>
+  <i-cell title="申请记录" url="/pages/apply/applyList" is-link></i-cell>
+  <i-cell title="报修记录" url="/pages/deviceRepair/repairRecord" is-link></i-cell>
+  <i-cell title="联系我们" bindtap="call" is-link></i-cell>
+  <!-- <i-cell title="意见及反馈" url="/pages/advice/advice" is-link></i-cell> -->
+</i-cell-group>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "设备申请",
+  "usingComponents": {
+    "mp-col": "../../dist/col",
+    "mp-row": "../../dist/row"
+  }
+}

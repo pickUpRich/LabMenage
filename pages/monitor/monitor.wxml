@@ -1,0 +1,14 @@
+<!--pages/monitor/monitor.wxml-->
+
+<view class="container">
+  <ec-canvas ec="{{ ecLine }}" type="2d"></ec-canvas>
+  <ec-canvas ec="{{ humLine }}" type="2d"></ec-canvas>
+</view>
+<picker bindchange="bindPickerChange" value="{{index}}" range="{{devNameList}}">
+<view class='select_box'>
+  <view class='select'>
+    <a class="weui-btn weui-btn_default" style="background: #fff;width: 80%;"><text style="color: #306fb4;">{{selectDev}}</text> </a>
+    <image class='select_img {{show&&"select_img_rotate"}}' src='../../img/switch.jpg'></image>
+  </view>
+</view>
+</picker>

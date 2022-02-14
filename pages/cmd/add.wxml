@@ -1,0 +1,56 @@
+<!--pages/cmd/add.wxml-->
+<form bindsubmit='onSubmit'>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_active weui-cell_disabled">
+      <view class="weui-cell__hd">
+        <label class="weui-label"><span style="color:red;width:5vw;">*</span>服务ID</label>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="serverId" placeholder="请输入设备命令所属的设备服务ID" value="{{info.serverId}}" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__hd">
+        <view class="weui-label"><span style="color:red;width:5vw;">*</span>命令名</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="name" placeholder="请输入命令名称" value="{{info.name}}" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__hd">
+        <view class="weui-label">命令说明</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="mark" placeholder="请输入命令说明" value="{{info.mark}}" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__hd">
+        <view class="weui-label"><span style="color:red;width:5vw;">*</span>参数名称</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="paramKey" placeholder="请输入参数名称" value="{{info.paramKey}}" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__hd">
+        <view class="weui-label"><span style="color:red;width:5vw;">*</span>参数值</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="paramVal" placeholder="请输入参数值"  value="{{info.paramVal}}"/>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__hd">
+        <view class="weui-label">语音值</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="voiceVal" placeholder="请输入语音触发该命令的中文" value="{{info.voiceVal}}" />
+      </view>
+    </view>
+  </view>
+  <view class="weui-cells__tips">服务ID可在华为云平台的设备命令中查看</view>
+  <button class="guid-button" formType="submit" type='primary'>提交</button>
+</form>
+<view wx:if="{{topTips}}" class="weui-toptips weui-toptips_warn fadeIn {{hide ? 'fadeOut' : ''}}">{{tipContent}}</view>

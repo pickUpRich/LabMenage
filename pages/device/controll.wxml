@@ -1,0 +1,88 @@
+<view>
+
+  <scroll-view scroll-y scroll-into-view='{{toView}}' style='height: {{scrollHeight}};'>
+
+    <!-- <view class='scrollMsg'> -->
+    <block wx:key wx:for='{{historyMsgList}}' wx:for-index="index">
+
+      <!-- 单个消息1 客服发出（左） -->
+      <view wx:if='{{item.speaker=="server"}}' id='msg-{{index}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+        <view style='width: 11vw; height: 11vw;'>
+          <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='../../img/my_1.png'></image>
+        </view>
+        <view style='width: 4vw; height: 11vw; margin-left: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+          <image style='width: 4vw;' src='../../img/left_msg.png' mode='widthFix'></image>
+        </view>
+        <view class='leftMsg'>{{item.content}}</view>
+      </view>
+
+      <!-- 单个消息2 用户发出（右） -->
+      <view wx:else id='msg-{{index}}' style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+        <view class='rightMsg'>{{item.content}}</view>
+        <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+          <image style='width: 4vw;' src='../../img/right_msg.png' mode='widthFix'></image>
+        </view>
+        <view style='width: 11vw; height: 11vw;'>
+          <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='{{cusHeadIcon}}'></image>
+        </view>
+      </view>
+
+    </block>
+    <!-- </view> -->
+
+    <view wx:if="{{historyMsgList.length>0}}">
+      <text class='reason_txt'>历史记录</text>
+    </view>
+
+    <!-- <view class='scrollMsg'> -->
+    <block wx:key wx:for='{{msgList}}' wx:for-index="index">
+
+      <!-- 单个消息1 客服发出（左） -->
+      <view wx:if='{{item.speaker=="server"}}' id='msg-{{index}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+        <view style='width: 11vw; height: 11vw;'>
+          <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='../../img/my_1.png'></image>
+        </view>
+        <view style='width: 4vw; height: 11vw; margin-left: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+          <image style='width: 4vw;' src='../../img/left_msg.png' mode='widthFix'></image>
+        </view>
+        <view class='leftMsg'>{{item.content}}</view>
+      </view>
+
+      <!-- 单个消息2 用户发出（右） -->
+      <view wx:else id='msg-{{index}}' style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+        <view class='rightMsg'>{{item.content}}</view>
+        <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+          <image style='width: 4vw;' src='../../img/right_msg.png' mode='widthFix'></image>
+        </view>
+        <view style='width: 11vw; height: 11vw;'>
+          <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='{{cusHeadIcon}}'></image>
+        </view>
+      </view>
+
+    </block>
+    <!-- </view> -->
+
+    <!-- 占位 -->
+    <view style='width: 100%; height: 18vw;'></view>
+  </scroll-view>
+
+  <view class='inputRoom' style='bottom: {{inputBottom}}'>
+    <image wx:if="{{sendType === 'text'}}" style='width: 7vw; margin-left: 3.2vw;' src='../../img/voice.jpg'
+      mode='widthFix' bindtap="switchVoice"></image>
+    <image wx:if="{{sendType === 'voice'}}" style='width: 7vw; margin-left: 3.2vw;' src='../../img/keyball.jpg'
+      mode='widthFix' bindtap="switchKeyboard"></image>
+    <input wx:if="{{sendType === 'text'}}" bindconfirm='sendClick' adjust-position='{{false}}' value='{{inputVal}}'
+      confirm-type='send' bindfocus='focus' bindblur='blur'></input>
+    <button wx:if="{{sendType === 'voice'}}" bindtouchstart="touchdown" style="width: 76vw;" bindtouchend="touchup">按住 说话</button>
+
+  </view>
+</view>
+
+<image class="speaker" hidden="{{!isSpeaking}}" src="{{speakerUrl}}"></image>
+<view class="fadeIn {{hideWarnToast ? 'fadeOut' : ''}}" wx:if="{{warnToast}}">
+		<view class="weui-mask_transparent"></view>
+		<view class="weui-toast">
+			<i class="weui-icon-warn weui-icon_toast"></i>
+			<view class="weui-toast__content">{{tipContent}}</view>
+		</view>
+	</view>

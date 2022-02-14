@@ -1,0 +1,65 @@
+<!--pages/info/info.wxml-->
+<view class="weui-cells__title">编辑</view>
+<form bindsubmit='onSubmit'>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_active weui-cell_disabled">
+      <view class="weui-cell__hd">
+        <label class="weui-label">微信号</label>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入微信号" value="{{info.nickName}}" disabled />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__hd">
+        <view class="weui-label">华为云账号</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="username" placeholder="请输入登录华为云平台的账号" value="{{info.username}}" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__hd">
+        <view class="weui-label">华为云密码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="password" name="password" placeholder="请输入登录华为云平台的密码" value="{{info.password}}" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__hd">
+        <view class="weui-label">账号ID</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="imaId" placeholder="请输入IAM用户所属账号ID" value="{{info.imaId}}" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__hd">
+        <view class="weui-label">账号名称</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="imaName" placeholder="请输入IAM用户所属账号名称" value="{{info.imaName}}" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__hd">
+        <view class="weui-label">项目ID</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="projectId" placeholder="请输入IAM用户所属账号的项目ID"  value="{{info.projectId}}"/>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__hd">
+        <view class="weui-label">项目名称</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="projectName" placeholder="请输入IAM用户所属账号的项目名称" value="{{info.projectName}}" />
+      </view>
+    </view>
+  </view>
+  <view class="weui-cells__tips">完善信息后才可以进行设备控制 </view>
+  <text class="link-text" bindtap="toOut">IMA相关信息获取</text>
+  <button class="guid-button" formType="submit" type='primary'>提交</button>
+</form>

@@ -1,0 +1,13 @@
+/* pages/cmd/add.wxss */
+.guid-button {
+  margin-top: 20px;
+  width: 150px;
+  border-radius: 30px;
+  background: #306fb4;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+.page{background-color:var(--weui-BG-2)}.weui-toptips{display:block}

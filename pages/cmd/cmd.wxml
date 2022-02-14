@@ -1,0 +1,16 @@
+<!--pages/cmd/cmd.wxml-->
+<view class="weui-cells weui-cells_after-title" wx:for="{{cmdList}}" data-name="{{item.name}}" data-id="{{item.id}}" bindlongpress="deleteCmd"
+  wx:key="key">
+  <navigator url="/pages/cmd/add?id={{devId}}&cmdId={{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__bd">{{item.name}}</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access team-content">{{item.mark}}</view>
+  </navigator>
+</view>
+<!--底部浮动 start-->
+<view class="foot-nav mt15" >
+  <view class="flex con gridXt tc">
+    <view class="add-cart sub f16" >
+      <button class="add-cart-btn" bindtap='toAdd'>添加命令</button>
+    </view>
+  </view>
+</view>

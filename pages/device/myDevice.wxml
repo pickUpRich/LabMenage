@@ -1,0 +1,29 @@
+<!--pages/device/myDevice.wxml-->
+<!-- <view wx:for="{{array}}" wx:for-index="idx" wx:for-item="item">
+  <div role="option" class="weui-cell  weui-cell_example">
+    <div class="weui-cell__bd" bindtap="toDetail" data-enqid="{{item.id}}">
+      <div>
+        <p>{{item.code}}：{{item.name}}</p>
+      </div>
+    </div>
+    <div class="weui-flex">
+      <button class="weui-flex__item" type="primary" style="width: 100rpx;padding:5px" data-enqid="{{item.id}}" bindtap="toApply" disabled="{{item.status==null?true:item.status==10?false:true}}">申请</button>
+      <button class="weui-flex__item" type="default" style="width: 100rpx;padding:5px" data-enqid="{{item.id}}" bindtap="toRepair" disabled="{{item.status==null?true:item.status==10?false:item.status==20?false:true}}">报修</button>
+    </div>
+  </div>
+</view> -->
+<view>
+  <view class="weui-cells weui-cells_after-title" wx:for="{{array}}" wx:key="key" wx:for-index="idx" wx:for-item="item">
+    <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"  bindtap="toDetail" data-enqid="{{item.id}}">
+      <view class="weui-cell__bd" id="js_cell_l1_bd" aria-hidden="true">
+        <view>{{item.code}}：{{item.name}}</view>
+      </view>
+      <div class="weui-flex">
+      <button class="weui-flex__item" type="primary" style="width: 100rpx;padding:5px" data-enqid="{{item.id}}" bindtap="toApply" disabled="{{item.status==null?true:item.status==10?false:true}}">申请</button>
+      <button class="weui-flex__item" type="default" style="width: 100rpx;padding:5px" data-enqid="{{item.id}}" bindtap="toRepair" disabled="{{item.status==null?true:item.status==10?false:item.status==20?false:true}}">报修</button>
+    </div>
+      <view class="weui-cell__ft weui-cell__ft_in-access" aria-hidden="true"></view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{topTips}}" class="weui-toptips weui-toptips_warn fadeIn {{hide ? 'fadeOut' : ''}}">{{tipContent}}</view>

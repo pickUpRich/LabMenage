@@ -1,0 +1,75 @@
+/* pages/my/my.wxss */
+.infoList{
+  margin-top: 50rpx;
+}
+.infoList view{
+  color: #666;
+  font-size: 32rpx;
+}
+.loginBtn{
+  background: #CDAA7D;
+  color: white;
+  margin-top: 150rpx;
+  width: 80%!important;
+}
+.userHeadImg{
+  overflow:hidden;  
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;  
+  border: 2px solid #fff;
+  margin: 20rpx auto;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);  
+}
+.userBox{
+  width: 100%;
+  text-align: center;
+}
+.list_box{
+  width: 92%;
+  margin: 0 auto;
+  padding-top: 40rpx;
+}
+.list_info_box{
+  width: 100%;
+  border-bottom: 1px solid rgb(228, 231, 237);
+  padding: 30rpx 0;
+  display: flex;
+  align-items: center;
+}
+.history_info_box{
+  width: 100%;
+  padding-top: 30rpx;
+}
+.history_box{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.list_info_box text,.history_box text{
+  font-size: 32rpx;
+}
+.list_info_box image,.history_box image{
+  width: 44rpx;
+  height: 44rpx;
+}
+.history_info{
+  width: 100%;
+  height: 200rpx;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin-top: 30rpx;
+  display: flex;
+}
+.history_info image{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 10rpx;
+}
+.none{
+  width: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  color: #e3e3e3;
+}

@@ -1,0 +1,14 @@
+/* pages/device/add.wxss */
+ .pic {
+  float:left;
+  position:relative;
+  margin-right:9px;
+  margin-bottom:9px;
+  }
+.weui-toptips{display:block}
+.delete-btn{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+

@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/authority/authority",
+    "pages/apply/applyList",
+    "pages/apply/applyDetail",
+    "pages/my/my",
+    "pages/logs/logs",
+    "pages/info/info",
+    "pages/outHtml/outHtml",
+    "pages/msg/msg_success",
+    "pages/apply/apply",
+    "pages/deviceRepair/repair",
+    "pages/deviceRepair/repairRecord",
+    "pages/deviceRepair/repairDetail",
+    "pages/device/myDevice",
+    "pages/device/myDeviceDetail",
+    "pages/cmd/cmd",
+    "pages/cmd/add",
+    "pages/monitor/monitor",
+    "pages/info/contract"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#306fb4",
+    "navigationBarTitleText": "阳光设备管理系统",
+    "navigationBarTextStyle": "black"
+  },
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.4",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
+  "tabBar": {
+    "color": "#99999A",
+    "selectedColor": "#306fb4",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./img/index_1.png",
+        "selectedIconPath": "./img/index_2.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "./img/my_1.png",
+        "selectedIconPath": "./img/my_2.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {"weui": true}
+}

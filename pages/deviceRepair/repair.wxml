@@ -1,0 +1,71 @@
+<form bindsubmit='onSubmit'>
+  <div class="weui-cells__group weui-cells__group_form">
+    <div class="weui-cells">
+      <label class="weui-cell weui-cell_active">
+        <div class="weui-cell__hd"><span class="weui-label"><span style="color: red;">*</span>选择设备</span></div>
+        <div class="weui-cell__bd">
+          <picker mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" range-key="name">
+            <input class="weui-input" placeholder="请选择对应设备" value='{{enq}}' />
+          </picker>
+        </div>
+      </label>
+      <label class="weui-cell weui-cell_active">
+        <div class="weui-cell__hd"><span class="weui-label">设备编码</span></div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" value="{{enq_code}}" disabled />
+        </div>
+      </label>
+      <label class="weui-cell weui-cell_active">
+        <div class="weui-cell__hd"><span class="weui-label">规格型号</span></div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" value="{{enq_model}}" disabled />
+        </div>
+      </label>
+      <div class="weui-cells__group weui-cells__group_form">
+        <div class="weui-cells weui-cells_form">
+          <div class="weui-cell weui-cell_active">
+            <div class="weui-cell__bd">
+              <textarea class="weui-textarea" placeholder="请填写设备报修缘由" rows="3" bindinput="inputTextReason"></textarea>
+              <div role="option" aria-live="polite" class="weui-textarea-counter"><span>0</span>/200</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <view class="page__bd">
+        <view class="weui-cells">
+          <view class="weui-cell weui-cell_uploader">
+            <view class="weui-cell__bd">
+              <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                  <view aria-role="option" class="weui-uploader__overview">
+                    <view class="weui-uploader__title">图片上传</view>
+                    <view class="weui-uploader__info">{{imgs.length}}/2</view>
+                  </view>
+                  <!-- <view class="weui-uploader__tips">
+                            上传提示
+                          </view> -->
+                </view>
+                <view class="weui-uploader__bd">
+                  <view class="weui-uploader__files" id="uploaderFiles">
+                    <block wx:for="{{imgs}}" wx:key="*this">
+                      <view class="weui-uploader__file pic" bindtap="previewImg" id="{{item}}">
+                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill">
+                          <icon type='cancel' class="delete-btn" data-index="{{index}}" catchtap="deleteImg"></icon>
+                        </image>
+                      </view>
+                    </block>
+                  </view>
+                  <view class="weui-uploader__input-box">
+                    <view aria-role="button" aria-label="上传" class="weui-uploader__input" bindtap="chooseImg"></view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+  <button class="guid-button" formType="submit" type='primary' disabled="{{enq_status_jue}}">{{enq_status_jue?enq_status:"报修"}}</button>
+</form>
+<view wx:if="{{topTips}}" class="weui-toptips weui-toptips_warn fadeIn {{hide ? 'fadeOut' : ''}}">{{tipContent}}</view>

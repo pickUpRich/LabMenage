@@ -1,0 +1,80 @@
+<!--pages/info/info.wxml-->
+<view class="weui-cells__title">设备信息</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">设备编号</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{code}}" disabled />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">设备名称</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{enqname}}" disabled />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">状态</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{status}}" disabled />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">规格型号</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{model}}" disabled />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">保管人</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{user}}" disabled />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">系别</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{college}}" disabled />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">存放仓库</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{warehouse}}" disabled />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">原价值</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{amount}}" disabled />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">入库时间</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{in_time}}" disabled />
+    </view>
+  </view>
+  <div class="weui-flex">
+      <button type="primary" style="padding:15px" data-id="{{item.id}}" bindtap="toApply" disabled="{{applydis}}">申请</button>
+      <button type="default" style="padding:15px;" bindtap="toRepair" disabled="{{repairdis}}">报修</button>
+    </div>
+</view>

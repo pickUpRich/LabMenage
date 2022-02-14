@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "环境监测",
+  "usingComponents": {
+    "ec-canvas": "../../ec-canvas/ec-canvas"
+  }
+}
