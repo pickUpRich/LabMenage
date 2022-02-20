@@ -66,7 +66,6 @@ Page({
     
   },
   toDetail:function(e){
-    var that = this;
     wx.navigateTo({
       url: '../apply/applyDetail?applyid='+e.currentTarget.dataset.applyid
       })

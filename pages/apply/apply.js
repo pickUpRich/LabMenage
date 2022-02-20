@@ -47,10 +47,22 @@ Page({
       });
     }, 1000);
   },
+  checkLogin:function(){
+    if(app.globalData.userInfo==null || app.globalData.userInfo.id==null){
+      this.open("用户暂未登陆，请登录");
+      setTimeout(function(){
+        wx.redirectTo({
+          url: '/pages/authority/authority',
+        })
+      },1000)
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 登录校验
+    this.checkLogin(this,app);
     console.log(options)
     // 查询对应设备列表
     var that = this;
@@ -89,14 +101,8 @@ Page({
    * 表单提交事件
    */
   onSubmit: function (e) {
-    if(app.globalData.userInfo==null || app.globalData.userInfo.id==null){
-      this.open("用户暂未登陆，请登录");
-      setTimeout(function(){
-        wx.redirectTo({
-          url: '/pages/authority/authority',
-        })
-      },1000)
-    }
+    // 登录校验
+    this.checkLogin(this,app);
     if (this.data.enq == null) {
       this.open("请选择对应设备");
       return;

@@ -42,5 +42,13 @@
       </button>
     </view>
   </view>
+  <view class="weui-flex" >
+    <view class="weui-flex__item">
+      <button class="guid-button" style="width: 375rpx;" bindtap="toStudentApply">
+        <image class="icon-img" src="../../img/messageLogo.png" ></image>
+        学生申请
+      </button>
+    </view>
+  </view>
 </view>
 <view wx:if="{{topTips}}" class="weui-toptips weui-toptips_warn fadeIn {{hide ? 'fadeOut' : ''}}">{{tipContent}}</view>

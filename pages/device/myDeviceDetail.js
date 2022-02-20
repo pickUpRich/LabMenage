@@ -33,10 +33,22 @@ Page({
     });
   }, 1000);
 },
+checkLogin:function(){
+  if(app.globalData.userInfo==null || app.globalData.userInfo.id==null){
+    this.open("用户暂未登陆，请登录");
+    setTimeout(function(){
+      wx.redirectTo({
+        url: '/pages/authority/authority',
+      })
+    },1000)
+  }
+},
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 登录校验
+    this.checkLogin();
     console.log(options)
     var that = this;
     // 查询当前设备是否已被占用，用户是否已经申请该设备，进行申请或者报修判断
