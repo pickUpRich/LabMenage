@@ -70,9 +70,27 @@ function getStatusName(val) {
   result = name[val];
   return result;
 }
+
+function getApplyStatusName(val) {
+  var result = "";
+  // 10：申请中，20:审核中，30：已审核，40：已驳回，50：已同意，60：已撤回
+  var name={
+  "10": "申请中",
+  "20": "审核中",
+  "30": "已审核",
+  "40": "已驳回",
+  "50": "已同意",
+  "60": "已撤回",
+  }
+  result = name[val];
+  console.log("result::::::"+result)
+  return result;
+}
+
 module.exports = {
   formatTime: formatTime,
   loadWeatherData: loadWeatherData,
   loadWeatherData2: loadWeatherData2,
-  getStatusName:getStatusName
+  getStatusName:getStatusName,
+  getApplyStatusName:getApplyStatusName
 }

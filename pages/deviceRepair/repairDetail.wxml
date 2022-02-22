@@ -1,5 +1,5 @@
 <view class="weui-cells__title">报修信息</view>
-<view class="weui-cells weui-cells_after-title">
+<view class="weui-cells ">
   <view class="weui-cell weui-cell_active weui-cell_disabled">
     <view class="weui-cell__hd">
       <label class="weui-label">报修编号</label>
@@ -73,14 +73,16 @@
     </view>
   </view>
   <view class="weui-uploader__bd">
-  <view class="weui-uploader__files" id="uploaderFiles">
-    <block wx:for="{{imgs}}" wx:key="*this"  wx:for-index="idx" >
-      <view class="weui-uploader__file pic" bindtap="previewImg" data-index="{{idx}}" style="text-align: center;">
-        <image class="weui-uploader__img" src="data:image/jpg;base64,{{item}}"  mode="aspectFill"></image>
-      </view>
-    </block>
+    <view class="weui-uploader__files" id="uploaderFiles">
+      <block wx:for="{{imgs}}" wx:key="*this" wx:for-index="idx">
+        <view class="weui-uploader__file pic" bindtap="previewImg" data-index="{{idx}}" style="text-align: center;">
+          <image class="weui-uploader__img" src="data:image/jpg;base64,{{item}}" mode="aspectFill"></image>
+        </view>
+      </block>
+    </view>
+
   </view>
-</view>
+  <!-- 审批理由 -->
   <view class="weui-cell weui-cell_active weui-cell_disabled">
     <view class="weui-cell__hd">
       <label class="weui-label">审批理由</label>
@@ -90,11 +92,31 @@
         <div class="weui-cells weui-cells_form">
           <div class="weui-cell weui-cell_active">
             <div class="weui-cell__bd">
-              <textarea class="weui-textarea" bindinput="inputTextReason" disabled>{{item.auditReason == null?"无":item.applyReason}}</textarea>
+              <textarea class="weui-textarea" placeholder="{{item.auditReason == null?'请填写审批理由':''}}" bindinput="inputTextReason" disabled="{{type == 1?false:true}}" value="{{item.auditReason == null?'':item.auditReason}}"></textarea>
             </div>
           </div>
         </div>
       </div>
     </view>
   </view>
+  
 </view>
+
+<!-- 审批 -->
+<view style="display: {{type == 1?'block':'none'}};height: 150px;width:100%">
+    <view style="position: fixed;bottom: 15px;display: flex;width:100%">
+      <button class="" type="primary" data-id="{{item.id}}" bindtap="toReject">同意</button>
+      <button class="" type="warn" data-id="{{item.id}}" bindtap="toAgree">拒绝</button>
+    </view>
+  </view>
+
+  
+<view wx:if="{{topTips}}" class="weui-toptips weui-toptips_warn fadeIn {{hide ? 'fadeOut' : ''}}">{{tipContent}}</view>
+
+<view aria-role="alert" class="fadeIn {{hideToast ? 'fadeOut' : ''}}" wx:if="{{toast}}">
+		<view class="weui-mask_transparent"></view>
+		<view class="weui-toast">
+			<i class="weui-icon-success-no-circle weui-icon_toast"></i>
+			<view class="weui-toast__content">已完成</view>
+		</view>
+	</view>

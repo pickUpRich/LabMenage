@@ -4,6 +4,8 @@
     "pages/authority/authority",
     "pages/apply/applyList",
     "pages/apply/applyDetail",
+    "pages/audit/studentApplyList",
+    "pages/audit/audit",
     "pages/my/my",
     "pages/logs/logs",
     "pages/info/info",
@@ -26,7 +28,12 @@
     "navigationBarTitleText": "阳光设备管理系统",
     "navigationBarTextStyle": "black"
   },
-  
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.4",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
   "tabBar": {
     "color": "#99999A",
     "selectedColor": "#306fb4",

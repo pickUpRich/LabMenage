@@ -43,7 +43,7 @@ open: function (content) {
 
   onLoad() {
     // 登录校验
-    // this.checkLogin();
+    this.checkLogin();
     console.log(app.globalData.userInfo);
     if (app.globalData.userInfo) {
       this.setData({
@@ -103,7 +103,7 @@ open: function (content) {
    */
   toStudentApply:function(){
     wx.navigateTo({
-      url: '/pages/apply/applyList'
+      url: '/pages/apply/studentApplyList'
     })
   },
   getUserInfo(e) {

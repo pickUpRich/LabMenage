@@ -1,7 +1,6 @@
 // pages/device/myDevice.js
 const axios = require('../../utils/init.js');
 const util = require('../../utils/util.js');
-const app = getApp();
 Page({
 
   /**
@@ -11,8 +10,15 @@ Page({
     tipContent: "",
     topTips: false,
     hide: false,
-    array:[],
-    targetUrl: ""
+    array: [],
+    index:0,
+    enq:null,
+    enq_status_jue:true,
+    enq_status:null,
+    enq_code:null,
+    enq_id:null,
+    enq_reason:null,
+    type:null,
   },
   //打开提示窗 
   open: function (content) {
@@ -44,13 +50,29 @@ Page({
     // 登录校验
     this.checkLogin();
     console.log(options)
-    // 查询对应设备列表
+    if(options.type == null){
+      this.open("识别不了当前类型");
+      return;
+    }
+    this.setData({
+      type:options.type
+    })
+    // 查询对应详情
+    var url;
+    if(this.data.type == 1){
+      url = "labFault/findList"
+    }else{
+      url = "labFault/findList"
+    }
     var that = this;
-    axios.panleAPI("labFault/findList","","GET",function(res){
+    var requestData={
+      userId:app.globalData.userInfo.id
+    }
+    axios.panleAPI(url,requestData,"GET",function(res){
       console.log(res)
       if(res.status == 500){
         console.log(res.error)
-        that.open("查询设备错误");
+        that.open("查询错误");
         return;
       }else{
         res.map((item) => {

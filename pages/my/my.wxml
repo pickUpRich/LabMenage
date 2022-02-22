@@ -10,6 +10,9 @@
 </view>
 <i-cell-group i-class="infoList">
   <i-cell title="个人信息" url="/pages/info/info" is-link></i-cell>
+  <i-cell title="使用申请" url="/pages/audit/studentApplyList?type=1" is-link></i-cell>
+  <i-cell title="报修申请" url="/pages/audit/studentApplyList?type=2" is-link></i-cell>
+  <i-cell title="审批记录" url="/pages/audit/studentApplyList" is-link></i-cell>
   <i-cell title="申请记录" url="/pages/apply/applyList" is-link></i-cell>
   <i-cell title="报修记录" url="/pages/deviceRepair/repairRecord" is-link></i-cell>
   <i-cell title="联系我们" bindtap="call" is-link></i-cell>

@@ -29,7 +29,7 @@
       <label class="weui-label">申请状态</label>
     </view>
     <view class="weui-cell__bd">
-      <input class="weui-input" value="{{status}}" disabled />
+      <input class="weui-input" value="{{applyStatus}}" disabled />
     </view>
   </view>
   <view class="weui-cell weui-cell_active weui-cell_disabled">
@@ -81,7 +81,7 @@
         <div class="weui-cells weui-cells_form">
           <div class="weui-cell weui-cell_active">
             <div class="weui-cell__bd">
-              <textarea class="weui-textarea" bindinput="inputTextReason" disabled>{{item.auditReason == null?"无":item.applyReason}}</textarea>
+              <textarea class="weui-textarea" bindinput="inputTextReason" disabled="{{type == 1?false:true}}" value="{{item.auditReason == null?'':item.auditReason}}"></textarea>
             </div>
           </div>
         </div>
@@ -90,4 +90,21 @@
   </view>
 </view>
 
+<!-- 审批 -->
+<view style="display: {{type == 1?'block':'none'}};height: 150px;width:100%">
+    <view style="position: fixed;bottom: 15px;display: flex;width:100%">
+      <button class="" type="primary" data-id="{{item.id}}" bindtap="toReject">同意</button>
+      <button class="" type="warn" data-id="{{item.id}}" bindtap="toAgree">拒绝</button>
+    </view>
+  </view>
+
+  
 <view wx:if="{{topTips}}" class="weui-toptips weui-toptips_warn fadeIn {{hide ? 'fadeOut' : ''}}">{{tipContent}}</view>
+
+<view aria-role="alert" class="fadeIn {{hideToast ? 'fadeOut' : ''}}" wx:if="{{toast}}">
+		<view class="weui-mask_transparent"></view>
+		<view class="weui-toast">
+			<i class="weui-icon-success-no-circle weui-icon_toast"></i>
+			<view class="weui-toast__content">已完成</view>
+		</view>
+	</view>

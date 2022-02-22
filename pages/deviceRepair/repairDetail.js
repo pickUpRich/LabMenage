@@ -1,6 +1,7 @@
 // pages/device/myDevice.js
 const axios = require('../../utils/init.js');
 const util = require('../../utils/util.js');
+const app = getApp();
 Page({
 
   /**
@@ -16,6 +17,9 @@ Page({
     auditTime:null,
     imgs:[],
     previewImgs:[],
+    type:null,
+    enq_reason:null,
+    applyStatus:null,
   },
   //打开提示窗 
   open: function (content) {
@@ -28,6 +32,25 @@ Page({
         topTips: false,
         hide: false,
       });
+    }, 1000);
+  },
+  openToast() {
+    this.setData({
+      toast: true,
+    });
+    setTimeout(() => {
+      this.setData({
+        hideToast: true,
+      });
+      setTimeout(() => {
+        this.setData({
+          toast: false,
+          hideToast: false,
+        });
+        wx.navigateBack({
+          delta: 1,
+        })
+      }, 300);
     }, 1000);
   },
   checkLogin:function(){
@@ -48,6 +71,11 @@ Page({
     this.checkLogin();
     console.log(options)
     var that = this;
+    if(options.type == 1){
+      this.setData({
+        type:options.type
+      })
+    }
     axios.panleAPI("labFault/"+options.repairid,"","GET",function(res){
       console.log(res)
       console.log(res.data);
@@ -77,6 +105,46 @@ Page({
     })
   },
 
+  inputTextReason:function(e){
+    this.setData({
+      enq_reason:e.detail.value
+    })
+  },
+// 拒绝
+toReject:function(){
+  this.toAudit(1)
+},
+// 同意
+toAgree:function(){
+  this.toAudit(2)
+},
+toAudit:function(type){
+  console.log(type)
+   // 登录校验
+   this.checkLogin();
+   var url;
+   if(type == 1){
+      url = "labFault/agree";
+   }else{
+    url = "labFault/reject";
+   }
+   var requestData ={
+    auditReason:this.data.enq_reason,
+    userId:app.globalData.userInfo.id,
+    id:this.data.item.id,
+    opId:this.data.item.opId,
+   }
+   var that = this;
+  axios.panleAPI(url,requestData,"GET",function(res){
+    console.log(res)
+    console.log(res.data);
+    if(res.code == 500){
+      that.open(res.message);
+    }else{
+      that.openToast();
+    }
+  })
+},
   //预览图片
 
   onPreviewImage() {

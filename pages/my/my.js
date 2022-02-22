@@ -14,13 +14,47 @@ Page({
       time: '每天8:00-19:00'
     },
     historyArr: [],
-    canIUse : app.globalData.canIUse
+    canIUse : app.globalData.canIUse,
+    showView:null,
+  },
+  //打开提示窗 
+open: function (content) {
+  this.setData({
+    topTips: true,
+    tipContent: content
+  });
+  setTimeout(() => {
+    this.setData({
+      topTips: false,
+      hide: false,
+    });
+  }, 1000);
+},
+  checkLogin:function(){
+    if(app.globalData.userInfo==null || app.globalData.userInfo.id==null){
+      this.open("用户暂未登陆，请登录");
+      setTimeout(function(){
+        wx.redirectTo({
+          url: '/pages/authority/authority',
+        })
+      },1000)
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 判断是否已经登录授权过
+     // 登录校验
+     this.checkLogin();
+     console.log(app.globalData.userInfo);
+     if (app.globalData.userInfo) {
+       this.setData({
+         userInfo: app.globalData.userInfo,
+         hasUserInfo: true,
+         showView:app.globalData.userInfo.roleType!=40?false:true
+       })
+      }
+       // 判断是否已经登录授权过
     this.getLoginState()
   },
   bindGetUserInfo: function (e) {

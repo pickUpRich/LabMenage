@@ -1,0 +1,207 @@
+<form bindsubmit='onSubmit'>
+  <view style="display: {{type == 1?'block':'none'}};">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">报修编号</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{item.code}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">报修类型</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{item.type == 1?'设备':'耗材'}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">名称</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{item.name}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">报修状态</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{status}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">报修时间</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{applyTime}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">审核人</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{item.auditUserName}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">审核时间</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{auditTime}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">报修理由</label>
+        </view>
+        <view class="weui-cell__bd">
+          <div class="weui-cells__group weui-cells__group_form">
+            <div class="weui-cells weui-cells_form">
+              <div class="weui-cell weui-cell_active">
+                <div class="weui-cell__bd">
+                  <textarea class="weui-textarea" bindinput="inputTextReason" disabled>{{item.applyReason == null?"无":item.applyReason}}</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </view>
+      </view>
+      <view class="weui-uploader__bd">
+        <view class="weui-uploader__files" id="uploaderFiles">
+          <block wx:for="{{imgs}}" wx:key="*this" wx:for-index="idx">
+            <view class="weui-uploader__file pic" bindtap="previewImg" data-index="{{idx}}" style="text-align: center;">
+              <image class="weui-uploader__img" src="data:image/jpg;base64,{{item}}" mode="aspectFill"></image>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">审批理由</label>
+        </view>
+        <view class="weui-cell__bd">
+          <div class="weui-cells__group weui-cells__group_form">
+            <div class="weui-cells weui-cells_form">
+              <div class="weui-cell weui-cell_active">
+                <div class="weui-cell__bd">
+                  <textarea class="weui-textarea" bindinput="inputTextReason" disabled>{{item.auditReason == null?"无":item.applyReason}}</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </view>
+      </view>
+      <div class="weui-cells__group weui-cells__group_form">
+        <div class="weui-cells weui-cells_form">
+          <div class="weui-cell weui-cell_active">
+            <div class="weui-cell__bd">
+              <textarea class="weui-textarea" placeholder="请填写审批理由" rows="3" bindinput="inputTextReason"></textarea>
+              <div role="option" aria-live="polite" class="weui-textarea-counter"><span>0</span>/200</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </view>
+  </view>
+  <view style="display: {{type == 2?'block':'none'}};">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">申请编号</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{item.code}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">申请类型</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{item.type == 1?'设备':'耗材'}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">名称</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{item.name}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">申请状态</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{status}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">申请时间</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{applyTime}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">审核人</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{item.auditUserName}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">审核时间</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{auditTime}}" disabled />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">申请理由</label>
+        </view>
+        <view class="weui-cell__bd">
+          <div class="weui-cells__group weui-cells__group_form">
+            <div class="weui-cells weui-cells_form">
+              <div class="weui-cell weui-cell_active">
+                <div class="weui-cell__bd">
+                  <textarea class="weui-textarea" bindinput="inputTextReason" disabled>{{item.applyReason == null?"无":item.applyReason}}</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_active weui-cell_disabled">
+        <view class="weui-cell__hd">
+          <label class="weui-label">审批理由</label>
+        </view>
+        <view class="weui-cell__bd">
+          <div class="weui-cells__group weui-cells__group_form">
+            <div class="weui-cells weui-cells_form">
+              <div class="weui-cell weui-cell_active">
+                <div class="weui-cell__bd">
+                  <textarea class="weui-textarea" bindinput="inputTextReason" disabled>{{item.auditReason == null?"无":item.applyReason}}</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class="guid-button" formType="submit" type='primary' disabled="{{enq_status_jue}}">{{enq_status_jue?enq_status:"报修"}}</button>
+</form>
+<view wx:if="{{topTips}}" class="weui-toptips weui-toptips_warn fadeIn {{hide ? 'fadeOut' : ''}}">{{tipContent}}</view>

@@ -46,7 +46,10 @@ Page({
     console.log(options)
     // 查询对应设备列表
     var that = this;
-    axios.panleAPI("labApply/findList","","GET",function(res){
+    var requestData={
+      userId:app.globalData.userInfo.id
+    }
+    axios.panleAPI("labApply/findList",requestData,"GET",function(res){
       console.log(res)
       if(res.status == 500){
         console.log(res.error)
