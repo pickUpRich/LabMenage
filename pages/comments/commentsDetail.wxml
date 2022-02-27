@@ -1,0 +1,53 @@
+<view class="weui-cells__title">建议反馈信息</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">编号</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{item.code}}" disabled />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">反馈类型</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{item.type == 1?'设备':'耗材'}}" disabled />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">名称</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{item.name}}" disabled />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">反馈时间</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{createTime}}" disabled />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">反馈建议</label>
+    </view>
+    <view class="weui-cell__bd">
+      <div class="weui-cells__group weui-cells__group_form">
+        <div class="weui-cells weui-cells_form">
+          <div class="weui-cell weui-cell_active">
+            <div class="weui-cell__bd">
+              <textarea class="weui-textarea" bindinput="inputTextReason" disabled>{{item.feedbackInfo == null?"无":item.feedbackInfo}}</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{topTips}}" class="weui-toptips weui-toptips_warn fadeIn {{hide ? 'fadeOut' : ''}}">{{tipContent}}</view>

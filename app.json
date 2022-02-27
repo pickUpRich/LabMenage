@@ -20,7 +20,12 @@
     "pages/cmd/cmd",
     "pages/cmd/add",
     "pages/monitor/monitor",
-    "pages/info/contract"
+    "pages/info/contract",
+    "pages/material/materialList",
+    "pages/return/returnApplyList",
+    "pages/comments/comments",
+    "pages/warn/warnList",
+    "pages/comments/commentsDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -41,14 +46,14 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "./img/index_1.png",
-        "selectedIconPath": "./img/index_2.png"
+        "iconPath": "./img/index4.png",
+        "selectedIconPath": "./img/index2.png"
       },
       {
         "pagePath": "pages/my/my",
         "text": "我的",
-        "iconPath": "./img/my_1.png",
-        "selectedIconPath": "./img/my_2.png"
+        "iconPath": "./img/my1.png",
+        "selectedIconPath": "./img/my.png"
       }
     ]
   },

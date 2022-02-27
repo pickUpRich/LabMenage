@@ -1,9 +1,9 @@
 <!--pages/info/info.wxml-->
-<view class="weui-cells__title">设备信息</view>
+<view class="weui-cells__title">基础信息</view>
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell weui-cell_active weui-cell_disabled">
     <view class="weui-cell__hd">
-      <label class="weui-label">设备编号</label>
+      <label class="weui-label">编号</label>
     </view>
     <view class="weui-cell__bd">
       <input class="weui-input" value="{{code}}" disabled />
@@ -11,13 +11,14 @@
   </view>
   <view class="weui-cell weui-cell_active weui-cell_disabled">
     <view class="weui-cell__hd">
-      <label class="weui-label">设备名称</label>
+      <label class="weui-label">名称</label>
     </view>
     <view class="weui-cell__bd">
       <input class="weui-input" value="{{enqname}}" disabled />
     </view>
   </view>
-  <view class="weui-cell weui-cell_active weui-cell_disabled">
+  <view style="display:{{type==1?'block':'none'}};">
+    <view class="weui-cell weui-cell_active weui-cell_disabled">
     <view class="weui-cell__hd">
       <label class="weui-label">状态</label>
     </view>
@@ -25,9 +26,20 @@
       <input class="weui-input" value="{{status}}" disabled />
     </view>
   </view>
+  </view>
+  <view style="display:{{type==2?'block':'none'}};">
+    <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">库存</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" value="{{qty}}" disabled />
+    </view>
+  </view>
+  </view>
   <view class="weui-cell weui-cell_active weui-cell_disabled">
     <view class="weui-cell__hd">
-      <label class="weui-label">规格型号</label>
+      <label class="weui-label">{{type==1?'规格型号':'材料类型'}}</label>
     </view>
     <view class="weui-cell__bd">
       <input class="weui-input" value="{{model}}" disabled />
@@ -74,7 +86,7 @@
     </view>
   </view>
   <div class="weui-flex">
-      <button type="primary" style="padding:15px" data-id="{{item.id}}" bindtap="toApply" disabled="{{applydis}}">申请</button>
-      <button type="default" style="padding:15px;" bindtap="toRepair" disabled="{{repairdis}}">报修</button>
+      <button type="primary" style="padding:15px" bindtap="toApply" disabled="{{applydis}}">申请</button>
+      <button type="default" style="padding:15px;display: {{type==1?'block':'none'}};" bindtap="toRepair" disabled="{{repairdis}}">报修</button>
     </div>
 </view>

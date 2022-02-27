@@ -1,0 +1,15 @@
+<view>
+  <view class="weui-cells weui-cells_after-title" wx:for="{{array}}" wx:key="key" wx:for-index="idx" wx:for-item="item">
+    <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="toDetail" data-id="{{item.id}}">
+      <view class="weui-cell__bd" aria-hidden="true">
+        <view>反馈人：{{item.name == null?"暂无名称":item.userName}}</view>
+        <view class="weui-cell__desc">反馈时间：{{item.createTime}}</view>
+      </view>
+      <view class="weui-cell__ft weui-cell__ft_in-access" aria-hidden="true"></view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{array.length < 1}}" style="justify-content:center;font-size:50px;text-align:center;align-items:center;color:#bbbbbb;height:100%;display:flex;">暂无数据</view>
+
+<view wx:if="{{topTips}}" class="weui-toptips weui-toptips_warn fadeIn {{hide ? 'fadeOut' : ''}}">{{tipContent}}</view>

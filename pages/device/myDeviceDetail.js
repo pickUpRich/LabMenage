@@ -1,6 +1,7 @@
 // pages/device/myDevice.js
 const axios = require('../../utils/init.js');
 const util = require('../../utils/util.js');
+const app = getApp();
 Page({
 
   /**
@@ -19,6 +20,9 @@ Page({
     warehouse:"",
     amount:"",
     in_time:"",
+    type:"",
+    qty:"",
+    id:"",
   },
  //打开提示窗 
  open: function (content) {
@@ -61,34 +65,35 @@ checkLogin:function(){
           delta: 1
         })
       }else{
-        if(res == null){
+        if(res.length<1){
           that.open("查询到的设备为空");
           wx.navigateBack({
             delta: 1
           })
         }
+        var flag = false;
+        if(res.type == 1){
+          flag = res.status==null || res.status!=10?true:false
+        }else{
+          flag = res.qty<0
+        }
         that.setData({
-          applydis:res.status==null?true:res.status==10?false:true,
+          applydis:flag,
           repairdis:res.status==null?true:res.status==10?false:res.status==20?false:true,
           code:res.code,
           enqname:res.name,
           status:util.getStatusName(res.status),
-          model:res.modelCode,
+          model:res.model,
           user:res.userName,
           college:res.collegeName,
           warehouse:res.warehouseName,
           amount:res.amount,
           in_time:util.formatTime(res.inTime),
+          type:res.type,
+          qty:res.qty,
+          id:res.id
         })
       }
-    })
-  },
-   /**
-   * 详情
-   */
-  toDetail: function(){
-    wx.navigateTo({
-    url: '../device/myDeviceDetail'
     })
   },
   /**
@@ -96,7 +101,7 @@ checkLogin:function(){
    */
   toApply: function(){
     wx.navigateTo({
-      url: '../apply/apply'
+      url: '../apply/apply?type='+this.data.type+'&enqid='+this.data.id
     })
   },
   /**
@@ -104,7 +109,7 @@ checkLogin:function(){
    */
   toRepair: function(){
     wx.navigateTo({
-    url: '../deviceRepair/repair'
+    url: '../deviceRepair/repair?enqid='+this.data.id
     })
   }
 })

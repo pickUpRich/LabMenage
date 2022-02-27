@@ -73,3 +73,5 @@
   font-size: 28rpx;
   color: #e3e3e3;
 }
+
+image{margin-right:16px;vertical-align:middle;width:20px;height:20px}

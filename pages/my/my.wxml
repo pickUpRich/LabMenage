@@ -5,10 +5,65 @@
   </view>
   <open-data type="userNickName"></open-data>
 </view>
-<view class="list_box">
-
+<view class="weui-cells weui-cells_after-title">
+  <navigator class="weui-cell weui-cell_example " aria-role="option" url="/pages/info/info">
+    <view class="weui-cell__hd">
+      <image src="../../img/myInfo.png"></image>
+    </view>
+    <view class="weui-cell__bd" url="/pages/info/info" is-link>个人信息</view>
+    <view class="weui-cell__ft"></view>
+  </navigator>
+  <navigator wx:if="{{userInfo.roleType!=40}}" class="weui-cell weui-cell_example " aria-role="option" url="/pages/audit/studentApplyList?type=1">
+    <view class="weui-cell__hd">
+      <image src="../../img/applyRecord.png"></image>
+    </view>
+    <view class="weui-cell__bd" is-link>使用申请</view>
+    <view class="weui-cell__ft"></view>
+  </navigator>
+  <navigator wx:if="{{userInfo.roleType!=40}}" class="weui-cell weui-cell_example " aria-role="option" url="/pages/audit/studentApplyList?type=2">
+    <view class="weui-cell__hd">
+      <image src="../../img/repair.png"></image>
+    </view>
+    <view class="weui-cell__bd" is-link>报修申请</view>
+    <view class="weui-cell__ft"></view>
+  </navigator>
+  <navigator wx:if="{{userInfo.roleType!=40}}" class="weui-cell weui-cell_example " aria-role="option" url="/pages/audit/studentApplyList" >
+    <view class="weui-cell__hd">
+      <image src="../../img/auditRecord.png"></image>
+    </view>
+    <view class="weui-cell__bd" is-link>审批记录</view>
+    <view class="weui-cell__ft"></view>
+  </navigator>
+  <navigator class="weui-cell weui-cell_example " aria-role="option" url="/pages/apply/applyList">
+    <view class="weui-cell__hd">
+      <image src="../../img/userApplyRecord.png"></image>
+    </view>
+    <view class="weui-cell__bd" is-link>申请记录</view>
+    <view class="weui-cell__ft"></view>
+  </navigator>
+  <navigator class="weui-cell weui-cell_example " aria-role="option" url="/pages/deviceRepair/repairRecord">
+    <view class="weui-cell__hd">
+      <image src="../../img/repairRecord.png"></image>
+    </view>
+    <view class="weui-cell__bd" is-link>报修记录</view>
+    <view class="weui-cell__ft"></view>
+  </navigator>
+  <navigator class="weui-cell weui-cell_example " aria-role="option" url="/pages/comments/commentsList" >
+    <view class="weui-cell__hd">
+      <image src="../../img/feedback.png"></image>
+    </view>
+    <view class="weui-cell__bd" is-link>意见及反馈</view>
+    <view class="weui-cell__ft"></view>
+  </navigator>
+  <view class="weui-cell weui-cell_example " aria-role="option">
+    <view class="weui-cell__hd">
+      <image src="../../img/callMe2.png"></image>
+    </view>
+    <view class="weui-cell__bd" bindtap="call" is-link>联系我们</view>
+    <view class="weui-cell__ft"></view>
+  </view>
 </view>
-<i-cell-group i-class="infoList">
+<!-- <i-cell-group i-class="infoList">
   <i-cell title="个人信息" url="/pages/info/info" is-link></i-cell>
   <i-cell title="使用申请" url="/pages/audit/studentApplyList?type=1" is-link></i-cell>
   <i-cell title="报修申请" url="/pages/audit/studentApplyList?type=2" is-link></i-cell>
@@ -17,4 +72,4 @@
   <i-cell title="报修记录" url="/pages/deviceRepair/repairRecord" is-link></i-cell>
   <i-cell title="联系我们" bindtap="call" is-link></i-cell>
   <!-- <i-cell title="意见及反馈" url="/pages/advice/advice" is-link></i-cell> -->
-</i-cell-group>
+<!-- </i-cell-group> --> 

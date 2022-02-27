@@ -1,5 +1,7 @@
 // index.js
 // 获取应用实例
+const axios = require('../../utils/init.js');
+const util = require('../../utils/util.js');
 const app = getApp();
 Page({
   data: {
@@ -9,7 +11,9 @@ Page({
       '../../img/banner_2.jpg',
       '../../img/banner_1.jpg',
       '../../img/banner_3.jpg'
-    ]
+    ],
+    warnFlag:true,
+    warnTips:"您暂无新消息",
   },
   // 事件处理函数
   bindViewTap() {
@@ -40,7 +44,48 @@ open: function (content) {
       },1000)
     }
   },
-
+ /**
+   * 启动定时器
+   */
+  startInter : function(){
+    var that = this;
+    that.data.inter= setTimeout(
+        function () {
+          that.getWarn();
+        }, 30000);    
+  },
+getWarn:function(){
+  console.log('setInterval 每过10秒执行一次任务')
+  // TODO 你需要无限循环执行的任务
+  console.log(this.data)
+  var requestData ={
+    custodianId:this.data.userInfo.id
+  }
+  var that = this
+  axios.panleAPI("labEquipment/getWarn",requestData,"GET",function(res){
+    console.log(res)
+    var warnMsg;
+    var flag=true;
+    if(res.length<1){
+      flag = true;
+      warnMsg = "您暂无新消息"
+    }else {
+      flag = false;
+      warnMsg = res.length
+    }
+    that.setData({
+      warnTips:warnMsg,
+      warnFlag:flag
+    })
+  })
+},
+  /**
+   * 结束定时器
+   */
+  endInter: function(){
+    var that = this;
+    that.clearInterval(that.data.inter)
+  },
   onLoad() {
     // 登录校验
     this.checkLogin();
@@ -51,6 +96,8 @@ open: function (content) {
         hasUserInfo: true,
         showView:app.globalData.userInfo.roleType!=40?false:true
       })
+      this.getWarn();
+      this.startInter();
     } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
@@ -77,9 +124,18 @@ open: function (content) {
    * 扫码查看设备详情，可以直接申请或者报告维修
    */
   toQR:function(){
-    wx.navigateTo({
-      url: '/pages/apply/apply'
+    wx.scanCode({
+      success:function(res){
+        console.log(res)
+        wx.navigateTo({
+          url: res.result
+        })
+      },
+      fail:function(res){
+        console.log(res)
+      }
     })
+    
   },
   /**
    * 设备查看页面（命令编辑）

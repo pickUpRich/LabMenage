@@ -134,10 +134,11 @@ Page({
     data['failureUrl'] = this.data.local_imgs;
     data['type'] = 1;
     console.log(data)
+    var that = this
     axios.panleAPI('labFault/save', e.detail.value, "POST", function (res) {
       console.log(res);
       if(res.code!=200){
-        this.open("保存出错");
+        that.open(res.message==null?res.error:"报修出错");
         return;
       }
       wx.navigateTo({
@@ -169,6 +170,7 @@ chooseImg: function (e) {
       // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
       var tempFilePaths = res.tempFilePaths;
       var imgs = that.data.imgs;
+      console.log(tempFilePaths)
       console.log(imgs.length)
       if(imgs.length>1){
         that.open("图片最多上传两张");
@@ -186,7 +188,7 @@ chooseImg: function (e) {
         filePath: res.tempFilePaths[0],
         name: "file",
         formData: {
-          'filename': "pics"
+          'user': 'test'
         },
         header: {
           "Content-Type": "multipart/form-data",
@@ -203,7 +205,7 @@ chooseImg: function (e) {
               local_imgs:local_img
             })
           }else{
-            that.open(responseData.message);
+            that.open(responseData.message==null?"上传出错":responseData.message);
             console.log(imgs.length)
             imgs.splice(imgs.length-1, 1);
             that.setData({

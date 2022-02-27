@@ -48,7 +48,7 @@ Page({
           hideToast: false,
         });
         wx.navigateBack({
-          delta: 1,
+          delta: 2,
         })
       }, 300);
     }, 1000);
@@ -83,7 +83,7 @@ Page({
         that.open(res.message);
       }else{
         var imgList = [];
-        if(res.data.failureUrl!=null){
+        if(res.data.failureUrl!=null&&res.data.failureUrl!=""){
           var list = JSON.parse(res.data.failureUrl);
           console.log(list)
           for(var i in list){
@@ -110,12 +110,12 @@ Page({
       enq_reason:e.detail.value
     })
   },
-// 拒绝
-toReject:function(){
-  this.toAudit(1)
-},
 // 同意
 toAgree:function(){
+  this.toAudit(1)
+},
+// 拒绝
+toReject:function(){
   this.toAudit(2)
 },
 toAudit:function(type){
@@ -134,15 +134,16 @@ toAudit:function(type){
     id:this.data.item.id,
     opId:this.data.item.opId,
    }
+   console.log(requestData)
    var that = this;
   axios.panleAPI(url,requestData,"GET",function(res){
     console.log(res)
     console.log(res.data);
-    if(res.code == 500){
-      that.open(res.message);
-    }else{
+    if(res.status==200 || res.code == 200){
       that.openToast();
+      return;
     }
+    that.open(res.message==null?res.error:"审批出错");
   })
 },
   //预览图片

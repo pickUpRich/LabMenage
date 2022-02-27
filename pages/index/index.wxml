@@ -10,38 +10,51 @@
     </view>
 <view class="page" data-weui-theme="{{theme}}" data-weui-mode="{{mode}}">
   <view class="page__hd">
-    您有新消息！
+    <span wx:if="{{warnFlag}}">{{warnTips}}</span>
+    <span wx:if="{{!warnFlag}}" style="display: flex;">您有<span style="color: red;">{{warnTips}}</span>条<navigator url="/pages/warn/warnList" style="color: red;">库存预警</navigator>，请及时补充库存！</span>
   </view>
   <view class="weui-grids">
     <navigator class="weui-grid" aria-role="button" url="/pages/apply/apply">
       <view class="weui-grid__icon">
-        <image class="" src="../../img/nav.png"></image>
+        <image class="" src="../../img/enq.png"></image>
       </view>
       <view class="weui-grid__label">使用申请</view>
     </navigator>
-    <navigator class="weui-grid" aria-role="button" url="/pages/apply/apply">
+    <view class="weui-grid" aria-role="button" bindtap="toQR">
       <view class="weui-grid__icon">
-        <image class="" src="../../img/classify_1.png"></image>
+        <image class="" src="../../img/scan2.png"></image>
       </view>
       <view class="weui-grid__label">扫码查看</view>
-    </navigator>
-    <navigator class="weui-grid" aria-role="button" url="/pages/device/myDevice">
+    </view>
+    <navigator class="weui-grid" aria-role="button" url="/pages/device/myDevice?type=1">
       <view class="weui-grid__icon">
-        <image class="" src="../../img/classify_1.png"></image>
+        <image class="" src="../../img/search4.png"></image>
       </view>
       <view class="weui-grid__label">查看设备</view>
     </navigator>
+    <navigator class="weui-grid" aria-role="button" url="/pages/device/myDevice?type=2">
+      <view class="weui-grid__icon">
+        <image class="" src="../../img/search3.png"></image>
+      </view>
+      <view class="weui-grid__label">查看耗材</view>
+    </navigator>
     <navigator class="weui-grid" aria-role="button" url="/pages/deviceRepair/repair">
       <view class="weui-grid__icon">
-        <image class="" src="../../img/messageLogo.png"></image>
+        <image class="" src="../../img/repair2.png"></image>
       </view>
       <view class="weui-grid__label">设备报修</view>
     </navigator>
-    <navigator class="weui-grid" aria-role="button" url="/pages/apply/studentApplyList">
+    <navigator wx:if="{{userInfo.roleType!=40}}" class="weui-grid" aria-role="button" url="/pages/apply/studentApplyList">
       <view class="weui-grid__icon">
-        <image class="" src="../../img/messageLogo.png"></image>
+        <image class="" src="../../img/useApply.png"></image>
       </view>
-      <view class="weui-grid__label">学生申请(设备、耗材申请)</view>
+      <view class="weui-grid__label">学生申请</view>
+    </navigator>
+    <navigator class="weui-grid" aria-role="button" url="/pages/apply/applyList">
+      <view class="weui-grid__icon">
+        <image class="" src="../../img/return.png"></image>
+      </view>
+      <view class="weui-grid__label">归还</view>
     </navigator>
   </view>
 </view>

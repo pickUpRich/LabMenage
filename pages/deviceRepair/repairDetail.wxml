@@ -103,10 +103,10 @@
 </view>
 
 <!-- 审批 -->
-<view style="display: {{type == 1?'block':'none'}};height: 150px;width:100%">
+<view style="display: {{type == 1?'block':'none'}};height: 50px;width:100%">
     <view style="position: fixed;bottom: 15px;display: flex;width:100%">
-      <button class="" type="primary" data-id="{{item.id}}" bindtap="toReject">同意</button>
-      <button class="" type="warn" data-id="{{item.id}}" bindtap="toAgree">拒绝</button>
+      <button class="" type="primary" data-id="{{item.id}}" bindtap="toAgree">同意</button>
+      <button class="" type="warn" data-id="{{item.id}}" bindtap="toReject">拒绝</button>
     </view>
   </view>
 

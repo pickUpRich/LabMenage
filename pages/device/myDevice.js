@@ -13,6 +13,7 @@ Page({
     hide: false,
     array:[],
     targetUrl: "",
+    type:null,
   },
  //打开提示窗 
  open: function (content) {
@@ -46,13 +47,30 @@ checkLogin:function(){
     // 查询当前设备是否已被占用，用户是否已经申请该设备，进行申请或者报修判断
     // 查询对应设备列表
     var that = this;
-    axios.panleAPI("labEquipment/findList","","GET",function(res){
+    var url = "labEquipment/findExList";
+    console.log(options)
+    this.setData({
+      type:options.type
+    })
+    var requestData = {};
+    requestData['userId'] = app.globalData.userInfo.id;
+    if(options.type == 2){
+      requestData['type'] = 2
+    }else{
+      requestData['type'] = 1
+    }
+    axios.panleAPI(url,requestData,"GET",function(res){
       console.log(res)
       if(res.status == 500){
         console.log(res.error)
-        that.open("查询设备错误");
+        that.open("查询错误");
         return;
       }else{
+        res.map((item) => {
+          if(item.inTime!=null){
+            item.inTime = util.formatTime(item.inTime);
+          }
+        })
         that.setData({
           array:res
         })
@@ -64,7 +82,7 @@ checkLogin:function(){
    */
   toDetail: function(e){
     wx.navigateTo({
-    url: '../device/myDeviceDetail?enqid='+e.currentTarget.dataset.enqid
+    url: '../device/myDeviceDetail?enqid='+e.currentTarget.dataset.id
     })
   },
   /**
@@ -72,7 +90,7 @@ checkLogin:function(){
    */
   toApply: function(e){
     wx.navigateTo({
-      url: '../apply/apply?enqid='+e.currentTarget.dataset.enqid
+      url: '../apply/apply?type='+this.data.type+'&enqid='+e.currentTarget.dataset.id
     })
   },
   /**
@@ -80,7 +98,7 @@ checkLogin:function(){
    */
   toRepair: function(e){
     wx.navigateTo({
-    url: '../deviceRepair/repair?enqid='+e.currentTarget.dataset.enqid
+    url: '../deviceRepair/repair?enqid='+e.currentTarget.dataset.id
     })
   }
 })
