@@ -26,10 +26,13 @@ Page({
   bindPickerChange:function(e){
     this.setData({
       enq: this.data.array[e.detail.value].name,
+      enq_id: this.data.array[e.detail.value].id,
       enq_code:this.data.array[e.detail.value].code,
       enq_id:this.data.array[e.detail.value].id,
       enq_status_jue:this.data.array[e.detail.value].status!=10?true:false,
-      enq_status:this.data.array[e.detail.value].status!=10?null:"设备处于"+util.getStatusName(this.data.array[e.detail.value].status)+"状态"
+      enq_status:util.getStatusName(this.data.array[e.detail.value].status),
+      type:this.data.array[e.detail.value].type,
+      qty:this.data.array[e.detail.value].qty,
     })
   },
   inputTextReason:function(e){
@@ -76,7 +79,10 @@ Page({
     var that = this;
     var url= "labEquipment/findList";
     var requestData = {};
-    requestData['type'] = options.type;
+    if(options.type!=null && options.type!=undefined && options.type!=''){
+      requestData['type'] = options.type;
+    }
+    
     axios.panleAPI(url,requestData,"GET",function(res){
       console.log(res)
       if(res.status == 500){

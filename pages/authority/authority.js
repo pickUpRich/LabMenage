@@ -62,7 +62,8 @@ Page({
     }
     var loginData={
       "loginName":this.data.loginName,
-      "password":this.data.password
+      "password":this.data.password,
+      "roleType":''
     }
     var that = this;
     axios.panleAPI('login/loginCheck', loginData, "POST", function (res) {
