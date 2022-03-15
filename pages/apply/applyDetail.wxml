@@ -66,13 +66,13 @@
       <input class="weui-input" value="{{auditTime}}" disabled />
     </view>
   </view>
-  <view style="display: {{type != 1 && item.type==2 && item.status==20?'block':'none'}};" >
+  <view style="display: {{retuanQty!=null?'block':'none'}};" >
     <view class="weui-cell weui-cell_active weui-cell_disabled">
     <view class="weui-cell__hd">
       <label class="weui-label">归还耗材</label>
     </view>
     <view class="weui-cell__bd">
-      <input class="weui-input" placeholder="剩余耗材应还数量（无可不填）" bindinput="inputNum" />
+      <input class="weui-input" placeholder="剩余耗材应还数量（无可不填）" bindinput="inputNum" value="{{retuanQty}}"/>
     </view>
   </view>
   </view>

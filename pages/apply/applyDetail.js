@@ -19,6 +19,7 @@ Page({
     enq_reason:null,
     applyStatus:null,
     inputNum:null,
+    retuanQty:null,
   },
   
   //打开提示窗 
@@ -88,7 +89,8 @@ Page({
           item:res.data,
           applyStatus:util.getApplyStatusName(res.data.applyStatus),
           applyTime:res.data.applyTime==null?"":util.formatTime(res.data.applyTime),
-          auditTime:res.data.auditTime==null?"":util.formatTime(res.data.auditTime)
+          auditTime:res.data.auditTime==null?"":util.formatTime(res.data.auditTime),
+          retuanQty:res.retuanQty!=null?res.retuanQty:null
         })
       }
     })
@@ -117,9 +119,17 @@ Page({
      this.checkLogin();
      var url;
      if(type == 1){
+      if(this.data.item.applyStatus==70){
+        url = "labApply/returnAgree";
+      }else{
         url = "labApply/agree";
+      }
      }else{
-      url = "labApply/reject";
+      if(this.data.item.applyStatus==70){
+        url = "labApply/returnReject";
+      }else{
+        url = "labApply/reject";
+      }
      }
      var requestData ={
       auditReason:this.data.enq_reason,

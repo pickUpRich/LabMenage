@@ -66,6 +66,16 @@
       <input class="weui-input" value="{{auditTime}}" disabled />
     </view>
   </view>
+  <view style="display: {{type != 1 && item.type==2 && item.status==20?'block':'none'}};" >
+    <view class="weui-cell weui-cell_active weui-cell_disabled">
+    <view class="weui-cell__hd">
+      <label class="weui-label">归还耗材</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" placeholder="剩余耗材应还数量（无可不填）" bindinput="inputNum" />
+    </view>
+  </view>
+  </view>
   <view class="weui-cell weui-cell_active weui-cell_disabled">
     <view class="weui-cell__hd">
       <label class="weui-label">申请理由</label>
@@ -91,7 +101,7 @@
         <div class="weui-cells weui-cells_form">
           <div class="weui-cell weui-cell_active">
             <div class="weui-cell__bd">
-              <textarea class="weui-textarea" bindinput="inputTextReason" disabled="{{type == 1?false:true}}" value="{{item.auditReason == null?'':item.auditReason}}"></textarea>
+              <textarea class="weui-textarea" bindinput="inputTextReason" disabled value="{{item.auditReason == null?'':item.auditReason}}"></textarea>
             </div>
           </div>
         </div>
@@ -100,14 +110,12 @@
   </view>
 </view>
 
-<!-- 审批 -->
-<view style="display: {{type == 1?'block':'none'}};height: 150px;width:100%">
+<!-- 归还 -->
+<view style="display: {{item.status==20?'block':'none'}};height: 100px;width:100%">
     <view style="position: fixed;bottom: 15px;display: flex;width:100%">
-      <button class="" type="primary" data-id="{{item.id}}" bindtap="toReject">同意</button>
-      <button class="" type="warn" data-id="{{item.id}}" bindtap="toAgree">拒绝</button>
+      <button class="" type="primary" data-id="{{item.id}}" bindtap="toReturn">归还</button>
     </view>
   </view>
-
   
 <view wx:if="{{topTips}}" class="weui-toptips weui-toptips_warn fadeIn {{hide ? 'fadeOut' : ''}}">{{tipContent}}</view>
 

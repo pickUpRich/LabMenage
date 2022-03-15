@@ -18,6 +18,7 @@ Page({
     type:null,
     enq_reason:null,
     applyStatus:null,
+    inputNum:null,
   },
   
   //打开提示窗 
@@ -98,7 +99,11 @@ Page({
       enq_reason:e.detail.value
     })
   },
-
+  inputNum:function(e){
+    this.setData({
+      inputNum:e.detail.value
+    })
+  },
   // 拒绝
   toReject:function(){
     this.toAudit(1)
@@ -132,5 +137,34 @@ Page({
         that.openToast();
       }
     })
+  },
+  toReturn:function(){
+     // 登录校验
+     this.checkLogin();
+     var reg = new RegExp("")
+    if((this.data.inputNum!=null || this.data.inputNum<0) && !(/(^\+?[1-9][0-9]*$)/.test(this.data.inputNum))){
+      this.open("返还耗材只允许填写正整数");
+      return;
+    }
+    var requestData = {
+      userId:app.globalData.userInfo.id,
+      opId:this.data.item.opId,
+      id:this.data.item.id,
+      returnQty:this.data.inputNum,
+      type:this.data.item.type
+    }
+    var that = this;
+    axios.panleAPI("labApply/returnApply",requestData,"GET",function(res){
+      console.log(res)
+      if(res.code != 200){
+        that.open(res.message);
+        return;
+      }else{
+        wx.navigateTo({
+          url: '/pages/comments/comments?type='+that.data.item.type+"&opId="+that.data.item.opId+"&name="+that.data.item.name+"&id="+that.data.item.id,
+        })
+      }
+    })
   }
+
 })

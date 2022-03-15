@@ -46,27 +46,10 @@ Page({
     // 登录校验
     this.checkLogin();
     console.log(options)
-    // 查询对应设备列表
-    var url;
-    this.setData({
-      type:options.type
-    })
     console.log(this.data)
     var requestData = {};
     requestData['userId'] = app.globalData.userInfo.id;
-    if(this.data.type == 1){
-      url = "labApply/findStudentList"
-      this.setData({
-        applyType:1
-      })
-    }else if(this.data.type == 2){
-      this.setData({
-        applyType:2
-      })
-      url = "labFault/findStudentList"
-    }else{
-      url = "labApply/findAuditList"
-    }
+    var url = "labApply/findReturnList"
     var that = this;
     axios.panleAPI(url,requestData,"GET",function(res){
       console.log(res)
@@ -91,29 +74,9 @@ Page({
     
   },
   toDetail:function(e){
-    if(this.data.type == 1){
-      console.log(1)
-      wx.navigateTo({
-        url: '../apply/applyDetail?type=1&applyid='+e.currentTarget.dataset.applyid
-        })
-    }else if(this.data.type == 2){
-      console.log(2)
-      wx.navigateTo({
-        url: '../deviceRepair/repairDetail?type=1&repairid='+e.currentTarget.dataset.applyid
-        })
-    }else{
-      var applyType = e.currentTarget.dataset.applytype
-      console.log("applyType:"+applyType)
-      if(applyType == 1){
-        wx.navigateTo({
-          url: '../apply/applyDetail?applyid='+e.currentTarget.dataset.applyid
-          })
-      }else{
-        wx.navigateTo({
-          url: '../deviceRepair/repairDetail?repairid='+e.currentTarget.dataset.applyid
-          })
-      }
-    }
+    wx.navigateTo({
+      url: '../return/returnApplyDetail?type=1&applyid='+e.currentTarget.dataset.applyid
+      })
   }
    
 })

@@ -3,7 +3,7 @@
 	<view class="weui-msg">
 		<view class="weui-msg__icon-area"><text class="weui-icon-success weui-icon_msg"></text></view>
 		<view class="weui-msg__text-area">
-			<view class="weui-msg__title">已成功归还</view>
+			<view class="weui-msg__title">归还中</view>
 			<view class="weui-msg__custom-area">
 				<view class="weui-cells__title">意见反馈</view>
         <view class="weui-cells weui-cells_after-title">

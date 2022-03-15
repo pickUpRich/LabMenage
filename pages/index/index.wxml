@@ -45,13 +45,13 @@
       </view>
       <view class="weui-grid__label">设备报修</view>
     </navigator>
-    <navigator wx:if="{{userInfo.roleType!=40}}" class="weui-grid" aria-role="button" url="/pages/audit/studentApplyList">
+    <navigator wx:if="{{userInfo.roleType!=40}}" class="weui-grid" aria-role="button" url="/pages/audit/studentApplyList?type=1">
       <view class="weui-grid__icon">
         <image class="" src="../../img/useApply.png"></image>
       </view>
       <view class="weui-grid__label">学生申请</view>
     </navigator>
-    <navigator class="weui-grid" aria-role="button" url="/pages/apply/applyList">
+    <navigator class="weui-grid" aria-role="button" url="/pages/return/returnApplyList">
       <view class="weui-grid__icon">
         <image class="" src="../../img/return.png"></image>
       </view>

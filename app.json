@@ -23,6 +23,7 @@
     "pages/info/contract",
     "pages/material/materialList",
     "pages/return/returnApplyList",
+    "pages/return/returnApplyDetail",
     "pages/comments/comments",
     "pages/warn/warnList",
     "pages/comments/commentsDetail"
