@@ -66,6 +66,7 @@ function getStatusName(val) {
   "50": "待报废",
   "60": "报废",
   "70": "其他",
+  "80":"归还中",
   }
   result = name[val];
   return result;
@@ -81,6 +82,9 @@ function getApplyStatusName(val) {
   "40": "已驳回",
   "50": "已同意",
   "60": "已撤回",
+  "70":"归还中",
+  "80":"归还拒绝",
+  "90":"已归还",
   }
   result = name[val];
   console.log("result::::::"+result)
