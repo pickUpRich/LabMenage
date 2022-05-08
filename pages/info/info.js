@@ -36,6 +36,8 @@ Page({
   },
   loginOut:function(){
     app.globalData.userInfo = null;
+    app.globalData.canIUse = false;
+    console.log(globalData.userInfo);
     this.checkLogin();
   }
 })

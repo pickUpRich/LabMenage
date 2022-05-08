@@ -150,8 +150,10 @@ Page({
       userId:app.globalData.userInfo.id,
       opId:this.data.item.opId,
       id:this.data.item.id,
-      returnQty:this.data.inputNum,
       type:this.data.item.type
+    }
+    if(this.data.inputNum != null && this.data.inputNum>0){
+      requestData.returnQty = this.data.inputNum
     }
     var that = this;
     axios.panleAPI("labApply/returnApply",requestData,"GET",function(res){

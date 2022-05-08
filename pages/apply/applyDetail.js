@@ -90,7 +90,7 @@ Page({
           applyStatus:util.getApplyStatusName(res.data.applyStatus),
           applyTime:res.data.applyTime==null?"":util.formatTime(res.data.applyTime),
           auditTime:res.data.auditTime==null?"":util.formatTime(res.data.auditTime),
-          retuanQty:res.retuanQty!=null?res.retuanQty:null
+          retuanQty:res.data.returnQty!=null?res.data.returnQty:null
         })
       }
     })
@@ -137,6 +137,10 @@ Page({
       id:this.data.item.id,
       opId:this.data.item.opId,
      }
+     if(this.data.retuanQty!=null && this.data.retuanQty>0){
+      requestData['qty'] = this.data.retuanQty
+     }
+     console.log(requestData)
      var that = this;
     axios.panleAPI(url,requestData,"GET",function(res){
       console.log(res)

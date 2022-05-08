@@ -167,7 +167,7 @@ Page({
     data['userId'] = app.globalData.userInfo.id;
     data['applyReason'] = this.data.enq_reason;
     data['type'] = this.data.type;
-    data['qty'] = this.data.inputQty;
+    data['qty'] = this.data.inputQty ==null?'':this.data.inputQty;
     console.log(data)
     //申请
     var that = this;
